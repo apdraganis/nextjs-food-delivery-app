@@ -7,7 +7,7 @@ interface AuthContextInterface {
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextInterface>({
+export const AuthContext = createContext<AuthContextInterface>({
   token: '',
   isLoggedIn: false,
   login: (token: string) => { },
