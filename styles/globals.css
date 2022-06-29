@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
-
-html,
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
 body {
-  height: 100vh;
+  min-height: 100vh;
   padding: 0;
   margin: 0;
   font-family: 'Noto Sans JP', sans-serif;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../src/assets/icecreamshop.jpg');
-  background-color: rgb(133, 133, 133);
+  background-image: url("../src/assets/icecreamshop.jpg");
+  background-color: #858585;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,5 +17,7 @@ a {
 }
 
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
+/*# sourceMappingURL=globals.css.map */

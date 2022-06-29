@@ -21,9 +21,6 @@ const Home: NextPage = () => {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur eum vel laudantium expedita. Porro, quaerat provident natus necessitatibus deserunt facilis.</p>
         <button>View Products</button>
       </main>
-      <footer className={styles.footer}>
-        &copy; TypeCream 2022
-      </footer>
     </Fragment>
   )
 }

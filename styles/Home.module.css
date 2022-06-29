@@ -1,20 +1,31 @@
 .content {
   color: white;
-  width: 500px;
   text-align: center;
-  margin: 0;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  margin: auto;
+  width: 90%;
+  /* Card style */
+  background-color: #EF9F9F;
+  border-radius: 14px;
+  padding: 0.6rem 1rem 1.5rem 1rem;
+  -webkit-box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
 }
 
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  color: white;
-  text-align: center;
+.content button {
+  cursor: pointer;
+  font: inherit;
+  border-radius: 25px;
+  border: 1px solid #F47C7C;
+  color: #F47C7C;
+  background-color: white;
+  padding: 0.5rem 2rem;
+  -webkit-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.25);
 }
+
+@media (min-width: 1100px) {
+  .content {
+    width: 50%;
+  }
+}
+/*# sourceMappingURL=Home.module.css.map */
