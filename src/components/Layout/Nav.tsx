@@ -1,4 +1,5 @@
 import { Fragment, useContext } from 'react';
+import Link from 'next/link';
 import { AuthContext } from '../../store/auth/AuthProvider';
 // import HeaderCartButton from './HeaderCartButton';
 import styles from './Nav.module.scss';
@@ -12,7 +13,10 @@ const Header = (props: any) => {
     <Fragment>
       <nav className={styles.nav}>
         <h1>TypeCream</h1>
+
         <AuthButton />
+
+
       </nav>
     </Fragment >
   );

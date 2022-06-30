@@ -1,5 +1,6 @@
-import styles from './AuthButton.module.css';
+import styles from './AuthButton.module.scss';
 import AuthIcon from './AuthIcon';
+import Link from 'next/link';
 
 const AuthButton = (props: any) => {
   const showAuthHandler = () => {
@@ -8,7 +9,9 @@ const AuthButton = (props: any) => {
 
   return (
     <button className={styles.button}>
+
       <AuthIcon />
+
     </button>
   )
 }
