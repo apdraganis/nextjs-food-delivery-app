@@ -12,7 +12,7 @@ const Header = (props: any) => {
   return (
     <Fragment>
       <nav className={styles.nav}>
-        <h1>TypeCream</h1>
+        <Link href='/'><h1>TypeCream</h1></Link>
 
         <AuthButton />
 
