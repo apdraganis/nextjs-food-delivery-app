@@ -13,10 +13,8 @@ const Header = (props: any) => {
     <Fragment>
       <nav className={styles.nav}>
         <Link href='/'><h1>TypeCream</h1></Link>
-
+        {authCtx.isLoggedIn && <p>User Signed In!</p>}
         <AuthButton />
-
-
       </nav>
     </Fragment >
   );
