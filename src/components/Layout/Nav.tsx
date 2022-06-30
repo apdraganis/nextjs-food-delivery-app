@@ -1,7 +1,7 @@
 import { Fragment, useContext } from 'react';
 import { AuthContext } from '../../store/auth/AuthProvider';
 // import HeaderCartButton from './HeaderCartButton';
-import styles from './Nav.module.css';
+import styles from './Nav.module.scss';
 
 import AuthButton from '../Auth/AuthButton';
 

@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
 import CartProvider from '../src/store/cart/CartProvider'
 import AuthProvider from '../src/store/auth/AuthProvider'
