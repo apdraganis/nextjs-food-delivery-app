@@ -22,7 +22,7 @@ export default Products;
 
 export async function getStaticProps() {
 
-  const res = await fetch('https://food-order-app-3e7e1-default-rtdb.europe-west1.firebasedatabase.app/meals.json');
+  const res = await fetch(`${process.env.REALTIME_DB_URL}`);
   const data = await res.json();
 
   const loadedMeals = [];
