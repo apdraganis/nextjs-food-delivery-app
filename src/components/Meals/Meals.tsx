@@ -1,10 +1,11 @@
 import MealsList from './MealsList';
+import styles from './Meals.module.scss';
 
-const Meals = () => {
+const Meals = (props: any) => {
   return (
-    <>
-      <MealsList />
-    </>
+    <section className={styles.meals}>
+      <MealsList meals={props.meals} />
+    </section>
   );
 };
 

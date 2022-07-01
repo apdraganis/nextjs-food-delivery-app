@@ -1,0 +1,7 @@
+.meals {
+  margin-top: 5rem;
+
+  @media (min-width: 1100px) {
+    margin-top: 10rem;
+  }
+}

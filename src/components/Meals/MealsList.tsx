@@ -4,7 +4,7 @@ import MealItem from './MealItem/MealItem';
 import styles from './MealsList.module.scss';
 
 
-const AvailableMeals = () => {
+const MealsList = (props: any) => {
   // const [meals, setMeals] = useState<{}[]>([]);
   // const [isLoading, setIsLoading] = useState(true);
   // const [httpError, setHttpError] = useState();
@@ -58,25 +58,24 @@ const AvailableMeals = () => {
   //     </section>
   //   )
   // }
-
-  // const mealsList = meals.map((meal: any) => (
-  //   <MealItem
-  //     key={meal.id}
-  //     id={meal.id}
-  //     name={meal.name}
-  //     description={meal.description}
-  //     price={meal.price}
-  //   />
-  // ));
+  console.log(props.meals)
+  const mealsList = props.meals.map((meal: any) => (
+    <MealItem
+      key={meal.id}
+      id={meal.id}
+      name={meal.name}
+      description={meal.description}
+      price={meal.price}
+    />
+  ));
 
   return (
     <section className={styles.meals}>
       <Card>
-        {/* <ul>{mealsList}</ul> */}
+        <ul>{mealsList}</ul>
       </Card>
-      MealsList
     </section>
   );
 };
 
-export default AvailableMeals;
+export default MealsList;

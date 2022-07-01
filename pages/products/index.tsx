@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 import Meals from '../../src/components/Meals/Meals'
 
-const Products: NextPage = () => {
+const Products: NextPage = (props: any) => {
   return (
     <Fragment>
       <Head>
@@ -13,9 +13,33 @@ const Products: NextPage = () => {
           content='Have a look at our delicious ice cream products!'
         />
       </Head>
-      <Meals />
+      <Meals meals={props.meals} />
     </Fragment>
   )
 }
 
 export default Products;
+
+export async function getStaticProps() {
+
+  const res = await fetch('https://food-order-app-3e7e1-default-rtdb.europe-west1.firebasedatabase.app/meals.json');
+  const data = await res.json();
+
+  const loadedMeals = [];
+
+  for (const key in data) {
+    loadedMeals.push({
+      id: key,
+      name: data[key].name,
+      description: data[key].description,
+      price: data[key].price,
+    });
+  }
+
+  return {
+    props: {
+      meals: loadedMeals,
+      hello: 'world'
+    }
+  }
+};
