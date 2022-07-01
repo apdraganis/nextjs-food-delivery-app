@@ -2,10 +2,12 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FormEvent, FormEventHandler, useContext, useRef, useState } from "react";
 import { AuthContext } from "../../store/auth/AuthProvider";
+import { fireAuthContext } from "../../store/auth/fireAuthContext";
 import styles from './AuthForm.module.scss'
 
 const AuthForm: NextPage = () => {
   const router = useRouter();
+  const { user, signup, login, logout } = useContext(fireAuthContext);
   const authCtx = useContext(AuthContext);
   const emailRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
@@ -15,32 +17,18 @@ const AuthForm: NextPage = () => {
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
     setAuthError(false);
+    emailRef.current!.value = '';
+    passRef.current!.value = '';
   }
 
   const loginHandler = async () => {
-    const email = emailRef.current!.value;
-    const pass = passRef.current!.value;
-
-    const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDp7kDi_aaBPymgH1782RfsI_0ZDtU9k1E',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          email: email,
-          password: pass,
-          returnSecureToken: true
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      authCtx.login(data.idToken);
-      router.replace('/products');
-    } else {
-      setAuthError(true)
+    let email = emailRef.current!.value;
+    let pass = passRef.current!.value;
+    try {
+      await login(email, pass);
+      router.replace('/products')
+    } catch (error) {
+      setAuthError(true);
       emailRef.current!.focus();
     }
   }
@@ -48,46 +36,35 @@ const AuthForm: NextPage = () => {
   const signupHandler = async () => {
     let email = emailRef.current!.value;
     let pass = passRef.current!.value;
-
-    const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDp7kDi_aaBPymgH1782RfsI_0ZDtU9k1E', {
-      method: 'POST',
-      body: JSON.stringify({
-        'email': email,
-        'password': pass,
-        'returnSecureToken': true
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-
-    const data = await res.json();
-
-    if (res.ok) {
-      router.replace('/products');
-    } else {
-      setAuthError(true)
+    try {
+      await signup(email, pass);
+    } catch (error) {
+      setAuthError(true);
       emailRef.current!.focus();
     }
   };
 
+  const logoutHandler = () => {
+    logout();
+    router.replace('/');
+  }
+
 
   const submitHandler = (event: FormEvent) => {
     event.preventDefault();
-
   };
 
   return (
     <section className={styles.auth}>
-      {authCtx.isLoggedIn && (
+      {user && (
         <>
           <h1>Manage Account</h1>
           <div className={styles.actions}>
-            <button onClick={authCtx.logout}>Log Out</button>
+            <button onClick={logoutHandler}>Log Out</button>
           </div>
         </>
       )}
-      {!authCtx.isLoggedIn && (
+      {!user && (
         <>
           <h1>{isLogin ? 'Log In' : 'Create Account'}</h1>
           <form onSubmit={submitHandler}>
