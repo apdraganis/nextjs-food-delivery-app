@@ -1,14 +1,12 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { FormEvent, FormEventHandler, useContext, useRef, useState } from "react";
-import { AuthContext } from "../../store/auth/AuthProvider";
+import { FormEvent, useContext, useRef, useState } from "react";
 import { fireAuthContext } from "../../store/auth/fireAuthContext";
 import styles from './AuthForm.module.scss'
 
 const AuthForm: NextPage = () => {
   const router = useRouter();
   const { user, signup, login, logout } = useContext(fireAuthContext);
-  const authCtx = useContext(AuthContext);
   const emailRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
   const [isLogin, setIsLogin] = useState(true);

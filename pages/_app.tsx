@@ -8,13 +8,11 @@ import FireAuthProvider from '../src/store/auth/fireAuthContext'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <FireAuthProvider>
-      <AuthProvider>
-        <CartProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </CartProvider>
-      </AuthProvider>
+      <CartProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </CartProvider>
     </FireAuthProvider>
   )
 }

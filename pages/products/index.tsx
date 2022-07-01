@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { Fragment } from 'react'
+import Meals from '../../src/components/Meals/Meals'
 
 const Products: NextPage = () => {
   return (
@@ -12,7 +13,7 @@ const Products: NextPage = () => {
           content='Have a look at our delicious ice cream products!'
         />
       </Head>
-      hi products here
+      <Meals />
     </Fragment>
   )
 }

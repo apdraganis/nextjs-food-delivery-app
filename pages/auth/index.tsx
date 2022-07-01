@@ -4,8 +4,6 @@ import { Fragment } from "react";
 import AuthForm from "../../src/components/Auth/AuthForm";
 
 const AuthPage: NextPage = (props: any) => {
-  console.log(props.apiKey)
-
   return (
     <Fragment>
       <Head>
@@ -21,12 +19,3 @@ const AuthPage: NextPage = (props: any) => {
 };
 
 export default AuthPage;
-
-export async function getStaticProps() {
-  console.log(process.env.API_KEY)
-  return {
-    props: {
-      apiKey: process.env.API_KEY
-    }
-  }
-}
