@@ -1,10 +1,8 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../../../config/firebase';
 
 export const fireAuthContext = createContext<any>({});
-
-// export const useAuth = () => useContext(fireAuthContext);
 
 type Props = {
   children: React.ReactNode

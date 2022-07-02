@@ -1,31 +1,19 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-export interface Item {
-  id: string;
-  name: string;
-  amount: number;
-  price: number;
-}
-
-interface DefaultCart {
-  items: Item[];
-  totalAmount: number;
-}
-
-const initialState: DefaultCart = {
+const initialState = {
   items: [],
   totalAmount: 0
 }
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: initialState,
   reducers: {
     add(state, action) {
       state.totalAmount += action.payload.item.price * action.payload.item.amount
 
       const existingCartItemIndex = state.items.findIndex(
-        (item: Item) => item.id === action.payload.item.id
+        (item) => item.id === action.payload.item.id
       );
       const existingItem = state.items[existingCartItemIndex];
 
@@ -38,7 +26,7 @@ const cartSlice = createSlice({
     },
     remove(state, action) {
       const existingCartItemIndex = state.items.findIndex(
-        (item: Item) => item.id === action.payload.item.id
+        (item) => item.id === action.payload.item.id
       );
       const existingItem = state.items[existingCartItemIndex];
 
@@ -55,9 +43,7 @@ const cartSlice = createSlice({
 });
 
 const reduxStore = configureStore({
-  reducer: {
-    cart: cartSlice.reducer
-  }
+  reducer: cartSlice.reducer
 });
 
 export const cartActions = cartSlice.actions;

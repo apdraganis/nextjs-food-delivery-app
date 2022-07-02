@@ -4,17 +4,18 @@
   border: none;
   background-color: #EF9F9F;
   color: white;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.4rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-radius: 25px;
   font-weight: bold;
   transition: all .2s ease-in-out;
-}
 
-.button:hover {
-  transform: scale(1.1);
+  &:hover {
+    transform: scale(1.1);
+
+  }
 }
 
 .icon {
@@ -59,19 +60,4 @@
   100% {
     transform: scale(1);
   }
-}
-
-@media (max-width: 550px) {
-  .button {
-    padding: 0.5rem 0.75rem;
-  }
-
-  .title {
-    display: none;
-  }
-
-  .icon {
-    margin-right: 0;
-  }
-
 }

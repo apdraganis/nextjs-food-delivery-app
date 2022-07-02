@@ -5,6 +5,8 @@ import Layout from '../src/components/Layout/Layout'
 import FireAuthProvider from '../src/store/auth/fireAuthContext'
 import { useRouter } from 'next/router'
 import ProtectedRoute from '../src/components/Auth/ProtectedRoute'
+import { Provider } from 'react-redux'
+import reduxStore from '../src/store/redux/index'
 
 const noAuthRequired = ['/', '/products', '/auth'];
 
@@ -15,15 +17,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <FireAuthProvider>
       <CartProvider>
-        <Layout>
-          {noAuthRequired.includes(router.pathname) ? (
-            <Component {...pageProps} />
-          ) : (
-            <ProtectedRoute>
+        <Provider store={reduxStore}>
+          <Layout>
+            {noAuthRequired.includes(router.pathname) ? (
               <Component {...pageProps} />
-            </ProtectedRoute>
-          )}
-        </Layout>
+            ) : (
+              <ProtectedRoute>
+                <Component {...pageProps} />
+              </ProtectedRoute>
+            )}
+          </Layout>
+        </Provider>
       </CartProvider>
     </FireAuthProvider>
   )

@@ -1,5 +1,4 @@
 import reactDom from 'react-dom';
-
 import styles from './Modal.module.scss';
 
 const Backdrop = (props: any) => {
@@ -14,16 +13,14 @@ const ModalOverlay = (props: any) => {
   );
 };
 
-const portalElement = document.getElementById('overlays');
-
 const Modal = (props: any) => {
   return (
     <>
-      {/* {reactDom.createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
+      {reactDom.createPortal(<Backdrop onClose={props.onClose} />, document.querySelector("#portal")!)}
       {reactDom.createPortal(
         <ModalOverlay>{props.children}</ModalOverlay>,
-        portalElement
-      )} */}
+        document.querySelector("#portal")!
+      )}
     </>
   );
 };

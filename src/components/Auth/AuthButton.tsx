@@ -9,9 +9,7 @@ const AuthButton = (props: any) => {
 
   return (
     <button className={styles.button}>
-
       <AuthIcon />
-
     </button>
   )
 }

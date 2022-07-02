@@ -1,14 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
-import CartIcon from '../Cart/CartIcon';
-import CartContext from '../../store/cart-context';
-import styles from './HeaderCartButton.module.scss';
+import { useEffect, useState } from 'react';
+import CartIcon from './CartIcon';
+import styles from './CartButton.module.scss';
+import { useSelector } from 'react-redux';
 
 
-const HeaderCartButton = (props: any) => {
+const CartButton = (props: any) => {
   const [btnIsHighLighted, setBtnIsHighLighted] = useState(false);
-  const cartCtx = useContext(CartContext);
-
-  const { items } = cartCtx;
+  const items = useSelector((state: any) => state.items);
 
   const numberOfCartItems = items.reduce((curNumber: any, item: any) => {
     return curNumber + item.amount;
@@ -43,4 +41,4 @@ const HeaderCartButton = (props: any) => {
   );
 };
 
-export default HeaderCartButton;
+export default CartButton;

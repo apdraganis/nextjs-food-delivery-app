@@ -4,6 +4,7 @@ import { Fragment } from 'react'
 import Meals from '../../src/components/Meals/Meals'
 
 const Products: NextPage = (props: any) => {
+
   return (
     <Fragment>
       <Head>

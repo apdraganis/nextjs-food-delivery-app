@@ -9,7 +9,6 @@
   color: white;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 0 10%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 10;
@@ -17,21 +16,11 @@
   h1 {
     cursor: pointer;
   }
-}
 
-.actions button {
-  color: white;
-  font: inherit;
-  cursor: pointer;
-  background-color: transparent;
-  border: 1px solid white;
-  font-size: 0.85rem;
-  padding: 0.4rem 1.6rem;
-  border-radius: 25px;
-  margin-left: 1rem;
-
-  .button--alt {
-    color: $color-secondary;
-    background-color: white;
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 8rem;
   }
 }
