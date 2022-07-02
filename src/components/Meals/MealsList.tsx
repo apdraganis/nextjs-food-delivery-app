@@ -58,7 +58,6 @@ const MealsList = (props: any) => {
   //     </section>
   //   )
   // }
-  console.log(props.meals)
   const mealsList = props.meals.map((meal: any) => (
     <MealItem
       key={meal.id}
