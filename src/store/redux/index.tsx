@@ -12,14 +12,14 @@ interface DefaultCart {
   totalAmount: number;
 }
 
-const initialCartState: DefaultCart = {
+const initialState: DefaultCart = {
   items: [],
   totalAmount: 0
 }
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: initialCartState,
+  initialState,
   reducers: {
     add(state, action) {
       state.totalAmount += action.payload.item.price * action.payload.item.amount
@@ -49,7 +49,7 @@ const cartSlice = createSlice({
       }
     },
     clear(state) {
-      state = initialCartState;
+      state = initialState;
     }
   }
 });

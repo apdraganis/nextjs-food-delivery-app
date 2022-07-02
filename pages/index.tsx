@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
 import styles from '../styles/Home.module.scss'
 
 const HomePage: NextPage = () => {
+
   return (
     <>
       <Head>
