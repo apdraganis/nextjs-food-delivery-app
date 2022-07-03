@@ -4,26 +4,26 @@ import styles from './MealItemForm.module.scss';
 
 const MealItemForm = (props: any) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
-  const amountInputRef = useRef();
+  const amountInputRef = useRef<HTMLInputElement>();
 
   const submitHandler = (event: any) => {
     event.preventDefault();
 
-    // const enteredAmount = amountInputRef.current!.value;
-    // const enteredAmountNumber = +enteredAmount;
+    const enteredAmount = amountInputRef.current!.value;
+    const enteredAmountNumber = +enteredAmount;
 
-    // if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
-    //   setAmountIsValid(false);
-    //   return;
-    // }
+    if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
+      setAmountIsValid(false);
+      return;
+    }
 
-    // props.addToCartHandler(enteredAmountNumber);
+    props.addToCartHandler(enteredAmountNumber);
   };
 
   return (
     <form onSubmit={submitHandler} className={styles.form}>
       <Input
-        ref={amountInputRef}
+        reff={amountInputRef}
         label='Amount'
         input={{
           id: 'amount_' + props.id,

@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Input.module.scss';
 
-const Input = React.forwardRef((props, ref) => {
+const Input = ((props: any) => {
   return (
     <div className={styles.input}>
       <label htmlFor={props.input.id}>{props.label}</label>
-      <input ref={ref} {...props.input} />
+      <input ref={props.reff} {...props.input} />
     </div>
   );
 });

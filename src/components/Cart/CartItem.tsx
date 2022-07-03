@@ -1,6 +1,6 @@
 import styles from './CartItem.module.scss';
 
-const CartItem = (props) => {
+const CartItem = (props: any) => {
   const price = `$${props.price.toFixed(2)}`;
 
 
