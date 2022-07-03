@@ -8,7 +8,7 @@ import ProtectedRoute from '../src/components/Auth/ProtectedRoute'
 import { Provider } from 'react-redux'
 import reduxStore from '../src/store/redux/index'
 
-const noAuthRequired = ['/', '/products', '/auth'];
+const noAuthRequired = ['/', '/products', '/checkout', '/auth'];
 
 function MyApp({ Component, pageProps }: AppProps) {
 

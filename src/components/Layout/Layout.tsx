@@ -1,7 +1,6 @@
 import { ReactNode, useState } from 'react';
 import Modal from '../UI/Modal';
 import Nav from './Nav';
-import Portal from '../HOC/Portal'
 import Cart from '../Cart/Cart';
 
 type Props = {

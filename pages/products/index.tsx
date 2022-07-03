@@ -23,7 +23,7 @@ export default Products;
 
 export async function getStaticProps() {
 
-  const res = await fetch(`${process.env.REALTIME_DB_URL}`);
+  const res = await fetch(`${process.env.DATABASE_URL}/meals.json`);
   const data = await res.json();
 
   const loadedMeals = [];
