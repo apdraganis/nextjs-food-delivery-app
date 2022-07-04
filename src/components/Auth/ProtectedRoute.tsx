@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect } from 'react'
-import { fireAuthContext } from '../../store/auth/fireAuthContext';
+import { AuthContext } from '../../store/auth/AuthProvider';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useContext(fireAuthContext);
+  const { user } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {

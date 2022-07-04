@@ -1,16 +1,14 @@
-import styles from './AuthButton.module.scss';
-import AuthIcon from './AuthIcon';
 import Link from 'next/link';
+import AuthIcon from './AuthIcon';
+import styles from './AuthButton.module.scss';
 
-const AuthButton = (props: any) => {
-  const showAuthHandler = () => {
-    props.onClick(false)
-  }
-
+const AuthButton = () => {
   return (
-    <button className={styles.button}>
-      <AuthIcon />
-    </button>
+    <Link href='/auth'>
+      <button className={styles.button}>
+        <AuthIcon />
+      </button>
+    </Link>
   )
 }
 

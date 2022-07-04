@@ -4,10 +4,15 @@
   margin: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #ccc;
-}
 
-.meal h3 {
-  margin: 0 0 0.25rem 0;
+  h3 {
+    margin: 0 0 0.25rem 0;
+  }
+
+  @media (max-width: 550px) {
+    flex-direction: column;
+
+  }
 }
 
 .description {
@@ -19,10 +24,4 @@
   font-weight: bold;
   color: #F47C7C;
   font-size: 1.25rem;
-}
-
-@media (max-width: 550px) {
-  .meal {
-    flex-direction: column;
-  }
 }

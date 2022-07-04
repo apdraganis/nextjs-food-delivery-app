@@ -13,7 +13,7 @@ const ModalOverlay = (props: any) => {
   );
 };
 
-const Modal = (props: any) => {
+const Modal: React.FC = (props: any) => {
   return (
     <>
       {reactDom.createPortal(<Backdrop onClose={props.onClose} />, document.querySelector("#portal")!)}

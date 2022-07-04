@@ -1,25 +1,26 @@
-import React, { useContext, useState } from 'react';
+import { useRouter } from 'next/router';
 import CartItem from './CartItem';
-import styles from './Cart.module.scss';
-import Checkout from './Checkout';
-import Link from 'next/link';
+import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/redux';
-import { fireAuthContext } from '../../store/auth/fireAuthContext';
-import { useRouter } from 'next/router';
+import { AuthContext } from '../../store/auth/AuthProvider';
+import styles from './Cart.module.scss';
 
-const Cart = (props: any) => {
+interface CartProps {
+  onClose: () => void;
+}
+
+const Cart = (props: CartProps) => {
   const router = useRouter();
-  const { user } = useContext(fireAuthContext);
+  const { user } = useContext(AuthContext);
   const items = useSelector((state: any) => state.items);
   const totalAmount = useSelector((state: any) => state.totalAmount);
   const dispatch = useDispatch();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isCheckout, setIsCheckout] = useState(false);
-  const [didSubmit, setDidSubmit] = useState(false);
+
   let discount;
   let totalPrice;
   let finalPrice;
+
   const hasItems = items.length > 0;
 
   if (user) {
@@ -37,21 +38,6 @@ const Cart = (props: any) => {
   const cartItemAddHandler = (item: any) => {
     dispatch(cartActions.add({ ...item, amount: 1 }))
   };
-
-  const submitOrderHandler = async (userData: any) => {
-    setIsSubmitting(true);
-    await fetch('https://food-order-app-3e7e1-default-rtdb.europe-west1.firebasedatabase.app/orders.json', {
-      method: 'POST',
-      body: JSON.stringify({
-        user: userData,
-        orderItem: items
-      })
-    });
-    setIsSubmitting(false);
-    setDidSubmit(true);
-    dispatch(cartActions.clear());
-  };
-
 
   const cartItems = (
     <ul className={styles['cart-items']}>
@@ -71,7 +57,6 @@ const Cart = (props: any) => {
   const orderHandler = () => {
     props.onClose();
     router.push('/checkout');
-    // setIsCheckout(true);
   };
 
   const modalActions = <div className={styles.actions}>
@@ -82,7 +67,7 @@ const Cart = (props: any) => {
   </div>
 
   const discountContent =
-    <React.Fragment>
+    <>
       {user && (
         <div>
           <div className={styles.total}>
@@ -97,10 +82,10 @@ const Cart = (props: any) => {
           </div>
         </div>
       )}
-    </React.Fragment>
+    </>
 
-  const cartModalContent =
-    <>
+  return (
+    <div>
       {hasItems && (
         <>
           {cartItems}
@@ -109,29 +94,10 @@ const Cart = (props: any) => {
             <span>{totalPrice}</span>
           </div>
           {discountContent}
-          {isCheckout && <Checkout onConfirm={submitOrderHandler} setIsCheckout={setIsCheckout} />}
-          {!isCheckout && modalActions}
+          {modalActions}
         </>
       )}
-      {!hasItems && <p>No items added...</p>}
-
-    </>
-
-  const isSubmittingModalContent = <p>Sending order data...</p>;
-  const didSubmitModalContent = <>
-    <p>Order sent successfully!</p>
-    <div className={styles.actions}>
-      <button className={styles.button} onClick={props.onClose}>
-        Close
-      </button>
-    </div>
-  </>
-
-  return (
-    <div>
-      {!isSubmitting && !didSubmit && cartModalContent}
-      {isSubmitting && isSubmittingModalContent}
-      {didSubmit && didSubmitModalContent}
+      {!hasItems && <p>No items added..</p>}
     </div>
   );
 };

@@ -3,8 +3,11 @@ import CartIcon from './CartIcon';
 import styles from './CartButton.module.scss';
 import { useSelector } from 'react-redux';
 
+interface ButtonProps {
+  onClick: () => void;
+}
 
-const CartButton = (props: any) => {
+const CartButton = (props: ButtonProps) => {
   const [btnIsHighLighted, setBtnIsHighLighted] = useState(false);
   const items = useSelector((state: any) => state.items);
 

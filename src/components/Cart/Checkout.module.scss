@@ -57,18 +57,18 @@
       color: $color-white-pink;
     }
   }
-}
 
-.actions .submit {
-  margin-left: 2rem;
-  border: 1px solid #EF9F9F;
-  background-color: #EF9F9F;
-  color: white;
-}
+  .submit {
+    margin-left: 2rem;
+    border: 1px solid #EF9F9F;
+    background-color: #EF9F9F;
+    color: white;
 
-.actions .submit:hover,
-.actions .submit:active {
-  background-color: #F47C7C;
+    &:hover,
+    &:active {
+      background-color: #F47C7C;
+    }
+  }
 }
 
 .invalid {

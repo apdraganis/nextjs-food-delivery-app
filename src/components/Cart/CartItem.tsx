@@ -1,8 +1,15 @@
 import styles from './CartItem.module.scss';
 
-const CartItem = (props: any) => {
-  const price = `$${props.price.toFixed(2)}`;
+interface CartItemProps {
+  name: string;
+  price: number;
+  amount: number;
+  onRemove: () => void;
+  onAdd: () => void;
+}
 
+const CartItem = (props: CartItemProps) => {
+  const price = `$${props.price.toFixed(2)}`;
 
   return (
     <li className={styles['cart-item']}>

@@ -5,11 +5,32 @@
   border-bottom: 2px solid #F47C7C;
   padding: 1rem 0;
   margin: 1rem 0;
-}
 
-.cart-item h2 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.4rem;
+  h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.4rem;
+  }
+
+  button {
+    font: inherit;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #EF9F9F;
+    border: 1px solid #EF9F9F;
+    width: 3rem;
+    text-align: center;
+    border-radius: 6px;
+    background-color: transparent;
+    cursor: pointer;
+    margin-left: 1rem;
+    margin: 0.25rem;
+
+    &:hover,
+    &:active {
+      background-color: #F47C7C;
+      color: white;
+    }
+  }
 }
 
 .summary {
@@ -35,34 +56,8 @@
 .actions {
   display: flex;
   flex-direction: column;
-}
 
-
-
-.cart-item button {
-  font: inherit;
-  font-weight: bold;
-  font-size: 1.25rem;
-  color: #EF9F9F;
-  border: 1px solid #EF9F9F;
-  width: 3rem;
-  text-align: center;
-  border-radius: 6px;
-  background-color: transparent;
-  cursor: pointer;
-  margin-left: 1rem;
-  margin: 0.25rem;
-}
-
-.cart-item button:hover,
-.cart-item button:active {
-  background-color: #F47C7C;
-  color: white;
-}
-
-
-@media (min-width: 768px) {
-  .actions {
+  @media (min-width: 768px) {
     flex-direction: row;
   }
 }
