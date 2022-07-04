@@ -22,7 +22,6 @@ const cartSlice = createSlice({
       } else {
         state.items.push(action.payload)
       };
-      console.log(state)
     },
     remove(state, action) {
 
@@ -43,7 +42,6 @@ const cartSlice = createSlice({
     clear(state) {
       state.items = [];
       state.totalAmount = 0;
-      console.log('cleared!', state)
     }
   }
 });

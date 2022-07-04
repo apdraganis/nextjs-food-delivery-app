@@ -1,10 +1,19 @@
+import Link from 'next/link';
 import React, { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActions } from '../../store/redux';
 import styles from './Checkout.module.scss';
 
 const isEmpty = (value: any) => value.trim() === '';
 const isFiveChars = (value: any) => value.trim().length === 5;
 
 const Checkout = (props: any) => {
+  const items = useSelector((state: any) => state.items);
+  const dispatch = useDispatch();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
@@ -16,6 +25,26 @@ const Checkout = (props: any) => {
   const streetInputRef = useRef<HTMLInputElement>(null);
   const postalInputRef = useRef<HTMLInputElement>(null);
   const cityInputRef = useRef<HTMLInputElement>(null);
+
+  // Submit data
+  const submitOrderHandler = async (userData: any) => {
+    setIsSubmitting(true);
+    const res = await fetch(`${props.url}/orders.json`, {
+      method: 'POST',
+      body: JSON.stringify({
+        user: userData,
+        orderItem: items
+      })
+    });
+    if (!res.ok) {
+      setHasError(true);
+      setIsSubmitting(false);
+      return;
+    }
+    setIsSubmitting(false);
+    setDidSubmit(true);
+    dispatch(cartActions.clear());
+  };
 
 
   const cancelHandler = (event: React.FormEvent) => {
@@ -42,50 +71,80 @@ const Checkout = (props: any) => {
       city: enteredCityIsValid,
       postal: enteredPostalIsValid
     });
-  }
-  //   const formIsValid = enteredNameIsValid && enteredCityIsValid && enteredStreetIsValid && enteredPostalIsValid;
-  //   if (!formIsValid) {
-  //     return;
-  //   }
 
-  //   // Submit data
-  //   props.onConfirm({
-  //     name: enteredName,
-  //     street: enteredStreet,
-  //     postal: enteredPostal,
-  //     city: enteredCity,
-  //   })
-  // };
+    const formIsValid = enteredNameIsValid && enteredCityIsValid && enteredStreetIsValid && enteredPostalIsValid;
+    if (!formIsValid) {
+      return;
+    }
+
+    if (items.length < 1) {
+      setHasError(true);
+      return;
+    }
+
+    submitOrderHandler({
+      name: enteredName,
+      street: enteredStreet,
+      postal: enteredPostal,
+      city: enteredCity,
+    });
+  };
+
+  const isSubmittingModalContent = <p>Sending order data...</p>;
+  const didSubmitModalContent = <>
+    <p>Order sent successfully!</p>
+    <div className={styles.actions}>
+      <Link href='/'><button className={styles.button}>
+        Home
+      </button>
+      </Link>
+    </div>
+  </>
+  const hasErrorModalContent = <>
+    <p>Oops.. something went wrong!</p>
+    <div className={styles.actions}>
+      <Link href='/'><button className={styles.button}>
+        Home
+      </button>
+      </Link>
+    </div>
+  </>
 
   return (
     <section className={styles.checkout}>
       <h1>Checkout</h1>
-      <form onSubmit={confirmHandler}>
-        <div className={`${styles.control} ${!formInputsValidity.name && styles.invalid}`}>
-          <label htmlFor='name'>Name</label>
-          <input type='text' id='name' ref={nameInputRef} />
-          {/* {!formInputsValidity.name && <p>Please enter a valid name</p>} */}
-        </div>
-        <div className={`${styles.control} ${!formInputsValidity.street && styles.invalid}`}>
-          <label htmlFor='street'>Street</label>
-          <input type='text' id='street' ref={streetInputRef} />
-          {/* {!formInputsValidity.street && <p>Please enter a valid address</p>} */}
-        </div>
-        <div className={`${styles.control} ${!formInputsValidity.postal && styles.invalid}`}>
-          <label htmlFor='postal'>Postal Code</label>
-          <input type='text' id='postal' ref={postalInputRef} />
-          {/* {!formInputsValidity.postal && <p>Please enter a valid postal code (5 characters)</p>} */}
-        </div>
-        <div className={`${styles.control} ${!formInputsValidity.city && styles.invalid}`}>
-          <label htmlFor='city'>City</label>
-          <input type='text' id='city' ref={cityInputRef} />
-          {/* {!formInputsValidity.city && <p>Please enter a valid city</p>} */}
-        </div>
-        <div className={styles.actions}>
-          <button onClick={cancelHandler}>Cancel</button>
-          <button className={styles.submit}>Confirm</button>
-        </div>
-      </form>
+      {!isSubmitting && !didSubmit && !hasError && (
+        <form onSubmit={confirmHandler}>
+          <div className={`${styles.control} ${!formInputsValidity.name && styles.invalid}`}>
+            <label htmlFor='name'>Name</label>
+            <input type='text' id='name' ref={nameInputRef} />
+            {!formInputsValidity.name && <p>Please enter a valid name</p>}
+          </div>
+          <div className={`${styles.control} ${!formInputsValidity.street && styles.invalid}`}>
+            <label htmlFor='street'>Street</label>
+            <input type='text' id='street' ref={streetInputRef} />
+            {!formInputsValidity.street && <p>Plea
+              se enter a valid address</p>}
+          </div>
+          <div className={`${styles.control} ${!formInputsValidity.postal && styles.invalid}`}>
+            <label htmlFor='postal'>Postal Code</label>
+            <input type='text' id='postal' ref={postalInputRef} />
+            {!formInputsValidity.postal && <p>Please enter a valid postal code (5 characters)</p>}
+          </div>
+          <div className={`${styles.control} ${!formInputsValidity.city && styles.invalid}`}>
+            <label htmlFor='city'>City</label>
+            <input type='text' id='city' ref={cityInputRef} />
+            {!formInputsValidity.city && <p>Please enter a valid city</p>}
+          </div>
+          <div className={styles.actions}>
+            <button onClick={cancelHandler}>Cancel</button>
+            <button className={styles.submit}>Confirm</button>
+          </div>
+        </form>
+      )}
+      {isSubmitting && !didSubmit && (isSubmittingModalContent)}
+      {didSubmit && didSubmitModalContent}
+      {hasError && hasErrorModalContent}
     </section>
   );
 };

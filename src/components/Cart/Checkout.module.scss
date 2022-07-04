@@ -40,25 +40,27 @@
 
 .actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 
   button {
-    font: inherit;
-    color: #5a1a01;
     cursor: pointer;
-    background-color: transparent;
-    border: none;
-    border-radius: 25px;
-    padding: 0.5rem 2rem;
+    font: inherit;
+    color: $color-primary;
+    background-color: $color-white-pink;
+    border: 1px solid $color-primary;
+    border-radius: 4px;
+    padding: 0.5rem 2.5rem;
+
+    &:hover {
+      background-color: $color-primary;
+      border: 1px solid $color-white-pink;
+      color: $color-white-pink;
+    }
   }
 }
 
-.actions .actions button:hover,
-.actions button:active {
-  background-color: #ffe6dc;
-}
-
 .actions .submit {
+  margin-left: 2rem;
   border: 1px solid #EF9F9F;
   background-color: #EF9F9F;
   color: white;
