@@ -1,8 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { Fragment } from "react";
-import { useSelector } from "react-redux";
 import Checkout from "../../src/components/Cart/Checkout";
 
 interface CheckoutPageProps {
@@ -10,13 +8,6 @@ interface CheckoutPageProps {
 }
 
 const CheckoutPage: NextPage<CheckoutPageProps> = (props: { DB_URL: string }) => {
-  const router = useRouter();
-  const items = useSelector((state: any) => state.items);
-  if (items.length < 1) {
-    router.replace('/products')
-  }
-
-
   return (
     <Fragment>
       <Head>

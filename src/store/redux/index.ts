@@ -1,6 +1,18 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface Item {
+  id: string;
+  name: string;
+  amount: number;
+  price: number;
+}
+
+export interface RootState {
+  items: Item[],
+  totalAmount: number
+}
+
+const initialState: RootState = {
   items: [],
   totalAmount: 0
 }

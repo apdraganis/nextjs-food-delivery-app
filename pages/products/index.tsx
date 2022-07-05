@@ -3,8 +3,19 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 import Meals from '../../src/components/Meals/Meals'
 
-const Products: NextPage = (props: any) => {
+interface Meal {
+  id: number,
+  name: string,
+  description: string,
+  price: number
+}
 
+interface Props {
+  meals: Meal[]
+}
+
+
+const Products: NextPage<Props> = (props: Props) => {
   return (
     <Fragment>
       <Head>
@@ -39,8 +50,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      meals: loadedMeals,
-      hello: 'world'
+      meals: loadedMeals
     }
   }
 };

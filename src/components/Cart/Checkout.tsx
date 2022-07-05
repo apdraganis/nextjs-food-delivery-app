@@ -1,14 +1,28 @@
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
+import { RootState } from '../../../src/store/redux/index'
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/redux';
 import styles from './Checkout.module.scss';
 
-const isEmpty = (value: any) => value.trim() === '';
-const isFiveChars = (value: any) => value.trim().length === 5;
 
-const Checkout = (props: any) => {
-  const items = useSelector((state: any) => state.items);
+interface CheckoutProps {
+  url: string;
+}
+
+interface UserData {
+  name: string;
+  street: string;
+  postal: string;
+  city: string;
+}
+
+const isEmpty = (value: string) => value.trim() === '';
+const isFiveChars = (value: string) => value.trim().length === 5;
+
+
+const Checkout = ({ url }: CheckoutProps) => {
+  const items = useSelector((state: RootState) => state.items);
   const dispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
@@ -27,9 +41,9 @@ const Checkout = (props: any) => {
   const cityInputRef = useRef<HTMLInputElement>(null);
 
   // Submit data
-  const submitOrderHandler = async (userData: any) => {
+  const submitOrderHandler = async (userData: UserData) => {
     setIsSubmitting(true);
-    const res = await fetch(`${props.url}/orders.json`, {
+    const res = await fetch(`${url}/orders.json`, {
       method: 'POST',
       body: JSON.stringify({
         user: userData,
@@ -44,12 +58,6 @@ const Checkout = (props: any) => {
     setIsSubmitting(false);
     setDidSubmit(true);
     dispatch(cartActions.clear());
-  };
-
-
-  const cancelHandler = (event: React.FormEvent) => {
-    event.preventDefault();
-    props.setIsCheckout(false);
   };
 
   const confirmHandler = (event: React.FormEvent) => {
@@ -128,7 +136,7 @@ const Checkout = (props: any) => {
           </div>
           <div className={`${styles.control} ${!formInputsValidity.postal && styles.invalid}`}>
             <label htmlFor='postal'>Postal Code</label>
-            <input type='text' id='postal' ref={postalInputRef} />
+            <input type='number' id='postal' ref={postalInputRef} />
             {!formInputsValidity.postal && <p>Please enter a valid postal code (5 characters)</p>}
           </div>
           <div className={`${styles.control} ${!formInputsValidity.city && styles.invalid}`}>
@@ -137,7 +145,7 @@ const Checkout = (props: any) => {
             {!formInputsValidity.city && <p>Please enter a valid city</p>}
           </div>
           <div className={styles.actions}>
-            <button onClick={cancelHandler}>Cancel</button>
+            <button><Link href='/products'>Cancel</Link></button>
             <button className={styles.submit}>Confirm</button>
           </div>
         </form>
