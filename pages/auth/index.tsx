@@ -3,7 +3,7 @@ import Head from "next/head";
 import { Fragment } from "react";
 import AuthForm from "../../src/components/Auth/AuthForm";
 
-const AuthPage: NextPage = (props: any) => {
+const AuthPage: NextPage = () => {
   return (
     <Fragment>
       <Head>

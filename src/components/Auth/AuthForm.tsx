@@ -1,10 +1,9 @@
-import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FormEvent, useContext, useRef, useState } from "react";
 import { AuthContext } from "../../store/auth/AuthProvider";
 import styles from './AuthForm.module.scss'
 
-const AuthForm: NextPage = () => {
+const AuthForm: React.FC = () => {
   const router = useRouter();
   const { user, signup, login, logout } = useContext(AuthContext);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -30,6 +29,8 @@ const AuthForm: NextPage = () => {
       emailRef.current!.focus();
     }
   }
+
+
 
   const signupHandler = async () => {
     let email = emailRef.current!.value;
