@@ -1,7 +1,22 @@
 import React from 'react';
 import styles from './Input.module.scss';
 
-const Input = ((props: any) => {
+interface InputElementAttributesInterface {
+  id: string;
+  type: string,
+  min: string,
+  max: string,
+  step: string,
+  defaultValue: string,
+}
+
+interface InputComponentProps {
+  label: string;
+  input: InputElementAttributesInterface;
+  reff: any
+}
+
+const Input = ((props: InputComponentProps) => {
   return (
     <div className={styles.input}>
       <label htmlFor={props.input.id}>{props.label}</label>

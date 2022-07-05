@@ -1,8 +1,16 @@
 import { createContext, useEffect, useState } from "react";
-import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, UserCredential } from 'firebase/auth';
 import { auth } from '../../../config/firebase';
 
-export const AuthContext = createContext<any>({});
+
+interface AuthContextInterface {
+  user: any;
+  login: (email: string, password: string) => Promise<UserCredential>;
+  signup: (email: string, password: string) => Promise<UserCredential>;
+  logout: () => void;
+}
+
+export const AuthContext = createContext<AuthContextInterface | null>(null);
 
 type Props = {
   children: React.ReactNode

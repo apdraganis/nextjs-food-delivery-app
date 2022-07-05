@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 
 
 const MealItem = ({ id, name, description, price }: Meal) => {
-  console.log(typeof (id))
   const dispatch = useDispatch();
 
   const addToCartHandler = (amount: number) => {
