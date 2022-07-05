@@ -145,7 +145,7 @@ const Checkout = ({ url }: CheckoutProps) => {
             {!formInputsValidity.city && <p>Please enter a valid city</p>}
           </div>
           <div className={styles.actions}>
-            <button><Link href='/products'>Cancel</Link></button>
+            <Link href='/products'><button>Cancel</button></Link>
             <button className={styles.submit}>Confirm</button>
           </div>
         </form>
