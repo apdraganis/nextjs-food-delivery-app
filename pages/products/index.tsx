@@ -3,8 +3,8 @@ import Head from 'next/head'
 import { Fragment } from 'react'
 import Meals from '../../src/components/Meals/Meals'
 
-interface Meal {
-  id: number,
+export interface Meal {
+  id: string,
   name: string,
   description: string,
   price: number

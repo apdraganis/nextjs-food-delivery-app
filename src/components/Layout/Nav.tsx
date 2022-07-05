@@ -4,14 +4,18 @@ import styles from './Nav.module.scss';
 
 import AuthButton from '../Auth/AuthButton';
 
-const Nav = (props: any) => {
+interface NavProps {
+  onShowCart: () => void
+}
+
+const Nav = ({ onShowCart }: NavProps) => {
 
   return (
     <>
       <nav className={styles.nav}>
         <Link href='/'><h1>TypeCream</h1></Link>
         <span className={styles.menu}>
-          <CartButton onClick={props.onShowCart} />
+          <CartButton onClick={onShowCart} />
           <AuthButton />
         </span>
       </nav>

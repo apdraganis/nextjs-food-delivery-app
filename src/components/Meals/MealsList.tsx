@@ -1,11 +1,15 @@
-import { useEffect, useState } from 'react';
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
+import { Meal } from '../../../pages/products';
 import styles from './MealsList.module.scss';
 
+interface MealsListProps {
+  meals: Meal[];
+}
 
-const MealsList = (props: any) => {
-  const mealsList = props.meals.map((meal: any) => (
+
+const MealsList = ({ meals }: MealsListProps) => {
+  const mealsList = meals.map((meal: any) => (
     <MealItem
       key={meal.id}
       id={meal.id}
