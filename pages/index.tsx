@@ -15,8 +15,13 @@ const HomePage: NextPage = () => {
       </Head>
       <main className={styles.content}>
         <h1>TypeCream</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit iusto autem eos quisquam nam, nemo modi at libero tempora quis numquam. Modi corporis quae itaque nemo suscipit, recusandae praesentium odio.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur eum vel laudantium expedita. Porro, quaerat provident natus necessitatibus deserunt facilis.</p>
+        <h2>Cholesterol hates it. You’ll love it.</h2>
+        <div>
+          <p>
+            Jokes aside, TypeCream is made exclusively with high-quality ingredients and low calorie sugar substitutes!
+          </p>
+          <p>Take a look at our endless menu and when you feel ready use our application to place your order!</p>
+        </div>
         <Link href='./products'>View Products</Link>
       </main>
     </>

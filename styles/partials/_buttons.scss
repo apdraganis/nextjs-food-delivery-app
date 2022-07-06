@@ -1,0 +1,26 @@
+@import './colors';
+
+@mixin button($bgColor, $fontColor, $borderColor, $hoverbgColor, $hoverFontColor: #fff, $hoverBorderColor) {
+  background-color: $bgColor;
+  color: $fontColor;
+  font: inherit;
+  border: 1px solid $borderColor;
+  border-radius: 25px;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background-color: $hoverbgColor;
+    border-color: $hoverBorderColor;
+    color: $hoverFontColor;
+  }
+}
+
+@mixin button-rounded {
+  @include button($color-secondary, #fff, $color-secondary, $color-primary, 0, $color-primary)
+}
+
+@mixin button-alt-rounded {
+  @include button(#fff, $color-secondary, $color-secondary, $color-secondary, #fff, $color-secondary)
+}

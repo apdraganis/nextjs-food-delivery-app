@@ -1,3 +1,6 @@
+@import '../../../styles/partials/colors';
+@import '../../../styles/partials/buttons';
+
 .cart-items {
   list-style: none;
   margin: 0;
@@ -23,29 +26,13 @@
 .actions {
   text-align: right;
 
-  button {
-    font: inherit;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid #EF9F9F;
-    padding: 0.5rem 2rem;
-    border-radius: 25px;
-    margin-left: 1rem;
 
-    &:hover,
-    &:active {
-      background-color: #F47C7C;
-      border-color: #F47C7C;
-      color: white;
-    }
+  .button {
+    @include button-rounded;
+    margin-left: 1rem;
   }
 
   .button--alt {
-    color: #EF9F9F;
-  }
-
-  .button {
-    background-color: #EF9F9F;
-    color: white;
+    @include button-alt-rounded;
   }
 }
