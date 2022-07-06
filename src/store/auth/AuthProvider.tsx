@@ -3,14 +3,14 @@ import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndP
 import { auth } from '../../../config/firebase';
 
 
-interface AuthContextInterface {
-  user: any;
-  login: (email: string, password: string) => Promise<UserCredential>;
-  signup: (email: string, password: string) => Promise<UserCredential>;
-  logout: () => void;
-}
+// interface AuthContextInterface {
+//   user: any;
+//   login: (email: string, password: string) => Promise<UserCredential>;
+//   signup: (email: string, password: string) => Promise<UserCredential>;
+//   logout: () => void;
+// }
 
-export const AuthContext = createContext<AuthContextInterface | null>(null);
+export const AuthContext = createContext<any>({});
 
 type Props = {
   children: React.ReactNode

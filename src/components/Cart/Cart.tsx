@@ -3,7 +3,7 @@ import CartItem from './CartItem';
 import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/redux';
-import AuthProvider, { AuthContext } from '../../store/auth/AuthProvider';
+import { AuthContext } from '../../store/auth/AuthProvider';
 import styles from './Cart.module.scss';
 
 interface CartProps {
