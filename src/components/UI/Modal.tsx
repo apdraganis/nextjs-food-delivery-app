@@ -5,6 +5,7 @@ import styles from './Modal.module.scss';
 interface ModalProps {
   children: ReactNode;
   onClose: () => void;
+  showCart: boolean;
 }
 
 const Backdrop = (props: { onClose: () => void }) => {

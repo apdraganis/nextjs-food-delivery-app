@@ -26,7 +26,7 @@ const Layout: React.FC<Props> = ({ children }) => {
         <Modal showCart={showCart} onClose={hideCartModalHandler}>
           <Cart onClose={hideCartModalHandler} />
         </Modal>)}
-      <Nav onShowCart={(showCart: boolean) => showCartModalHandler(showCart)} />
+      <Nav onShowCart={() => showCartModalHandler(showCart)} />
       <main>{children}</main>
     </>
   )
