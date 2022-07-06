@@ -2,7 +2,6 @@ import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, UserCredential } from 'firebase/auth';
 import { auth } from '../../../config/firebase';
 
-
 // interface AuthContextInterface {
 //   user: any;
 //   login: (email: string, password: string) => Promise<UserCredential>;
