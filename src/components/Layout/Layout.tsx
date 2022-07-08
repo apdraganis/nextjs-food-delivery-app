@@ -2,6 +2,7 @@ import { ReactNode, useState } from 'react';
 import Modal from '../UI/Modal';
 import Nav from './Nav';
 import Cart from '../Cart/Cart';
+import Footer from './Footer';
 
 type Props = {
   children: ReactNode
@@ -28,6 +29,7 @@ const Layout: React.FC<Props> = ({ children }) => {
         </Modal>)}
       <Nav onShowCart={() => showCartModalHandler(showCart)} />
       <main>{children}</main>
+      <Footer />
     </>
   )
 };
